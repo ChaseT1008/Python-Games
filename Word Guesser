@@ -1,0 +1,46 @@
+import random
+
+#Opens/Reads/Counts the words in the txt file
+file = open("words.txt", "r")
+words = file.read().split()
+count = len(words)
+
+#Randomly selects word from the list and makes it all caps
+num = random.randint(0,count-1)
+word = words[num].upper()
+
+#Creates a spaced line for better visualization used throughout the code
+line = ""
+
+for x in range(0,3):
+    print(line)
+
+#Introduces the game/option for a hint.
+print("Let's play a game...guess the word I'm thinking...")
+print("If you get stuck, type 'hint' for a clue...")
+
+print(line)
+
+#Creates the guessing game functionality
+def guess():
+    
+    #Get's input guess from user
+    wordguess = input("What is your guess: ").upper()
+    
+    #Checks if the word is right/wrong or hint was selected
+    if wordguess == word:
+        print(line)
+        print("You got it!!! Congrats!")
+        quit()
+   
+    elif wordguess == "HINT":
+        print(line)
+        print("Your word starts with: {}.".format(word[0]))
+        guess()
+
+    else:
+        print(line)
+        print("That wasn't it!")
+        guess()
+
+guess()
